@@ -3,3 +3,4 @@ export type { User, LoginPayload, LoginResponse, MeResponse } from "./auth.types
 export type { Category, CreateCategoryPayload, UpdateCategoryPayload, DeleteCategoryPayload } from "./category.types"
 export type { Company, CreateCompanyPayload, UpdateCompanyPayload } from "./company.types"
 export type { Items, Item, CreateItemPayload, UpdateItemPayload, ItemQueryParams} from "./item.types"
+export type { StockInHistory, StockInQueryParams, CreateStockInPayload } from "./stockIn.types"
