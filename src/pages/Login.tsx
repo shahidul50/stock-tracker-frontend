@@ -56,6 +56,19 @@ const LoginPage = () => {
               <p className="mx-auto mt-3 max-w-xs text-sm leading-5 text-muted-foreground">
                 Sign in to access your stock management dashboard
               </p>
+              <div className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
+                <span className="font-medium">Login as</span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    form.setFieldValue("email", "admin@stocktracker.com")
+                    form.setFieldValue("password", "Password123")
+                  }}
+                  className="inline-flex items-center gap-1.5 rounded-md border border-primary/40 bg-primary/10 px-3 py-1 font-semibold text-primary transition-colors hover:bg-primary/20 dark:text-emerald-400 dark:border-emerald-500/40 dark:bg-emerald-500/10 dark:hover:bg-emerald-500/20 cursor-pointer"
+                >
+                  Admin
+                </button>
+              </div>
             </div>
 
             <form
@@ -122,13 +135,13 @@ const LoginPage = () => {
                 )}
               </form.Field>
 
-              <div className="flex items-center justify-between gap-3 text-xs">
+              {/* <div className="flex items-center justify-between gap-3 text-xs">
                 <label className="flex cursor-pointer items-center gap-2 text-muted-foreground">
                   <Checkbox aria-label="Remember me" />
                   Remember Me
                 </label>
                 <Link to="#" className="font-medium text-primary hover:underline">Forgot Password?</Link>
-              </div>
+              </div> */}
 
               {submitError && <p className="text-center text-xs text-destructive" role="alert">{submitError}</p>}
 
