@@ -29,6 +29,12 @@ import { updateQueryParams } from "@/utils/updateQueryParams";
 import { SalesSummary } from "@/components/report/SalesSummary";
 import { StockSummary } from "@/components/report/StockSummary";
 import type { SalesReportRow, StockSummaryRow } from "@/types";
+import {
+  exportSalesReportCSV,
+  exportSalesReportPDF,
+  exportStockSummaryCSV,
+  exportStockSummaryPDF,
+} from "@/utils/exportReport";
 
 const Report = () => {
   // SearchParams state
@@ -59,6 +65,7 @@ const Report = () => {
   // Export States
   const [triggerSalesExport, setTriggerSalesExport] = useState(false);
   const [triggerStockExport, setTriggerStockExport] = useState(false);
+  const [exportFormat, setExportFormat] = useState<"pdf" | "csv">("csv");
 
   // Dropdown Master Options
   const { data: categoryData } = useCategorySelect();
@@ -95,18 +102,37 @@ const Report = () => {
     );
 
   // Export Hooks
-  useSalesReportExport(
+  const { data: salesExportData, isSuccess: isSalesExportSuccess } = useSalesReportExport(
     { fromDate: fromDateParam, toDate: toDateParam },
     triggerSalesExport
   );
 
-  useStockSummaryExport(
+  const { data: stockExportData, isSuccess: isStockExportSuccess } = useStockSummaryExport(
     {
       companyId: companyParam === "All" ? undefined : companyParam,
       categoryId: categoryParam === "All" ? undefined : categoryParam,
     },
     triggerStockExport
   );
+
+  // Auto-download when export data arrives
+  useEffect(() => {
+    if (!isSalesExportSuccess || !triggerSalesExport) return;
+    const rows: SalesReportRow[] = salesExportData?.data?.data || [];
+    if (rows.length === 0) return;
+    if (exportFormat === "csv") exportSalesReportCSV(rows);
+    else exportSalesReportPDF(rows);
+    setTriggerSalesExport(false);
+  }, [isSalesExportSuccess, salesExportData]);
+
+  useEffect(() => {
+    if (!isStockExportSuccess || !triggerStockExport) return;
+    const rows: StockSummaryRow[] = stockExportData?.data?.data || [];
+    if (rows.length === 0) return;
+    if (exportFormat === "csv") exportStockSummaryCSV(rows);
+    else exportStockSummaryPDF(rows);
+    setTriggerStockExport(false);
+  }, [isStockExportSuccess, stockExportData]);
 
   // Data Extraction
   const salesRows: SalesReportRow[] = salesReportData?.data?.data || [];
@@ -124,13 +150,8 @@ const Report = () => {
   // Handlers
   const handleTabChange = (value: string) => {
     setActiveTab(value);
-    updateQueryParams(
-      {
-        tab: value,
-        page: 1,
-      },
-      setSearchParams
-    );
+    // Switching tabs will clear all other params, leaving only the tab param.
+    setSearchParams(new URLSearchParams({ tab: value }));
   };
 
   const handlePageSizeChange = (value: string | null) => {
@@ -179,12 +200,11 @@ const Report = () => {
   };
 
   const handleExport = (format: "pdf" | "csv") => {
+    setExportFormat(format);
     if (activeTab === "sales") {
       setTriggerSalesExport(true);
-      setTimeout(() => setTriggerSalesExport(false), 1000);
     } else {
       setTriggerStockExport(true);
-      setTimeout(() => setTriggerStockExport(false), 1000);
     }
   };
 
