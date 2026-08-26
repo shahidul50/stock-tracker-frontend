@@ -4,3 +4,4 @@ export type { Category, CreateCategoryPayload, UpdateCategoryPayload, DeleteCate
 export type { Company, CreateCompanyPayload, UpdateCompanyPayload } from "./company.types"
 export type { Items, Item, CreateItemPayload, UpdateItemPayload, ItemQueryParams} from "./item.types"
 export type { StockInHistory, StockInQueryParams, CreateStockInPayload } from "./stockIn.types"
+export type { StockOutItem, CreateStockOutPayload, TodayStockOutCount, StockOutItemResponse} from "./stockOut.types"
