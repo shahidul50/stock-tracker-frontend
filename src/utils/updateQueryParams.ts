@@ -1,6 +1,6 @@
     
 // URL Params Update Helper Function
-  export const updateQueryParams = (newParams: Record<string, string | number | null>, setSearchParams: any) => {
+  export const updateQueryParams = (newParams: Record<string, string | number | null | undefined>, setSearchParams: any) => {
     setSearchParams((prevParams: string | string[][] | Record<string, string> | URLSearchParams | undefined) => {
       const updatedParams = new URLSearchParams(prevParams);
 
