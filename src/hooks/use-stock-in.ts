@@ -22,6 +22,7 @@ export const useCreateStockIn = () => {
       toast.add({ description: data.message, type: "success" })
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.STOCK_INS] })
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEMS] })
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEM] })
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.STOCK_SUMMARY] })
     },
   })

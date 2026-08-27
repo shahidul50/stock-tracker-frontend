@@ -24,6 +24,7 @@ export const useRecordStockOut = () => {
         queryKey: [QUERY_KEYS.STOCK_OUT_TODAY_COUNT],
       })
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEMS] })
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEM] })
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.STOCK_SUMMARY] })
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.SALES_REPORT] })
     },

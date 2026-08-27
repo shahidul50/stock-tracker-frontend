@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import {toast} from "../components/ui/toast"
+import { toast } from "../components/ui/toast"
 
 import { companyService } from "@/services/company.service"
 import { QUERY_KEYS } from "@/constants/query-keys"
@@ -64,6 +64,9 @@ export const useUpdateCompany = () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.COMPANY_SELECT],
       })
+
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.SALES_REPORT] })
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.STOCK_SUMMARY] })
     },
   })
 }
@@ -79,6 +82,12 @@ export const useDeleteCompany = () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.COMPANY_SELECT],
       })
+
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEMS] })
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEM_SELECT] })
+
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.SALES_REPORT] })
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.STOCK_SUMMARY] })
     },
   })
 }

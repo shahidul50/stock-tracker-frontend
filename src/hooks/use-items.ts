@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import {toast} from "../components/ui/toast"
+import { toast } from "../components/ui/toast"
 
 import { itemService } from "@/services/item.service"
 import { QUERY_KEYS } from "@/constants/query-keys"
@@ -41,6 +41,9 @@ export const useCreateItem = () => {
       toast.add({ description: data.message, type: "success" })
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEMS] })
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEM_SELECT] })
+
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CATEGORIES] })
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.COMPANIES] })
     },
   })
 }
@@ -60,6 +63,12 @@ export const useUpdateItem = () => {
       toast.add({ description: data.message, type: "success" })
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEMS] })
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEM_SELECT] })
+
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CATEGORIES] })
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.COMPANIES] })
+
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.SALES_REPORT] })
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.STOCK_SUMMARY] })
     },
   })
 }
@@ -73,6 +82,12 @@ export const useDeleteItem = () => {
       toast.add({ description: data.message, type: "success" })
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEMS] })
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEM_SELECT] })
+
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CATEGORIES] })
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.COMPANIES] })
+
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.SALES_REPORT] })
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.STOCK_SUMMARY] })
     },
   })
 }

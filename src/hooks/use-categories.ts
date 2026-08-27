@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import {toast} from "../components/ui/toast"
+import { toast } from "../components/ui/toast"
 
 import { categoryService } from "@/services/category.service"
 import { QUERY_KEYS } from "@/constants/query-keys"
@@ -59,11 +59,14 @@ export const useUpdateCategory = () => {
       payload: UpdateCategoryPayload
     }) => categoryService.update(id, payload),
     onSuccess: (data) => {
-      toast.add({description: data.message, type: "success" })
+      toast.add({ description: data.message, type: "success" })
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CATEGORIES] })
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.CATEGORY_SELECT],
       })
+
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.SALES_REPORT] })
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.STOCK_SUMMARY] })
     },
   })
 }
@@ -74,11 +77,17 @@ export const useDeleteCategory = () => {
   return useMutation({
     mutationFn: (id: string) => categoryService.delete(id),
     onSuccess: (data) => {
-      toast.add({ description: data.message, type: "success"})
+      toast.add({ description: data.message, type: "success" })
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CATEGORIES] })
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.CATEGORY_SELECT],
       })
+
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEMS] })
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ITEM_SELECT] })
+
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.SALES_REPORT] })
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.STOCK_SUMMARY] })
     },
   })
 }
