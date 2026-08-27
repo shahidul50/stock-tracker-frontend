@@ -1,12 +1,10 @@
 
 import { useState } from "react"
 import { useForm } from "@tanstack/react-form"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { Eye, EyeOff, LockKeyhole, LogIn, Mail, ShieldCheck } from "lucide-react"
 import { z } from "zod"
-
 import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
 import { Field, FieldError, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { ROUTES } from "@/constants/routes"
