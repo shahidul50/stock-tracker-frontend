@@ -33,7 +33,7 @@ const DashboardPage = () => {
 
         <div className="relative mx-auto mt-8 flex h-40 w-48 items-center justify-center rounded-xl border-4 border-white bg-white/70 p-5 shadow-lg dark:border-slate-700 dark:bg-slate-800/80 lg:absolute lg:right-10 lg:top-1/2 lg:mt-0 lg:-translate-y-1/2">
           <div className="flex size-full flex-col items-center justify-center rounded-lg border border-emerald-100 bg-linear-to-br from-white to-emerald-50 dark:border-emerald-900 dark:from-slate-700 dark:to-emerald-950">
-            <img src="/images/Stack Tracker Logo.png" alt="StockTracker inventory" className="mb-2 size-14 object-contain" />
+            <img src="/images/Suppliar-Image.png" alt="StockTracker inventory" className="mb-2 size-14 object-contain" />
             <span className="text-center text-xs font-semibold uppercase tracking-widest text-emerald-700 dark:text-emerald-300">Inventory</span>
           </div>
         </div>

@@ -38,7 +38,7 @@ function SidebarContent() {
     <>
       {/* Brand Header (Fixed) */}
       <div className="flex h-16 shrink-0 items-center gap-3 border-b border-gray-200 px-6 dark:border-gray-800">
-        <img src="/images/Stack Tracker Logo.png" alt="Stock Tracker" className="h-8 w-8 object-contain" />
+        <img src="/images/Stock-tracker-logo.png" alt="Stock Tracker" className="h-8 w-8 object-contain" />
         <span className="text-xl font-bold text-[#00694B] dark:text-emerald-500">StockTracker</span>
       </div>
 
@@ -98,7 +98,7 @@ function SidebarContent() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full border border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-800">
-              <img src="/images/Suppliar Image.png" alt="User" className="h-full w-full object-cover" />
+              <img src="/images/user-icon.png" alt="User" className="h-full w-full object-cover" />
             </div>
             <div className="flex flex-col overflow-hidden">
               <span className="truncate text-sm font-semibold text-gray-900 dark:text-gray-100">{user?.name || "Admin User"}</span>
